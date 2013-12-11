@@ -13,7 +13,7 @@ Initially based on instructions here: https://gist.github.com/jamesmacaulay/5457
 
 ### Leiningen
 
-Install it then create `~/.lein/profiles.clj`. See [`profiles.clj`](https://github.com/jasongilman/SublimeClojureSetup/blob/master/profiles.clj) in this repo for contents.
+Install it then create `~/.lein/profiles.clj`. See [`profiles.clj`](blob/master/profiles.clj) in this repo for contents.
 
 ## Sublime Text 2 With Clojure
 
@@ -127,12 +127,12 @@ This file updates SublimeREPL settings so leiningen in on the path. Update this 
 
 We'll setup some keybindings in Sublime Text to make it easier to send code to the repl, run tests, etc.
 
-  * Append the [`clojure_keybindings.sublime-keymap`](https://github.com/jasongilman/SublimeClojureSetup/blob/master/clojure_keybindings.sublime-keymap) in this repo to `~/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap`
+  * Append the [`clojure_keybindings.sublime-keymap`](blob/master/clojure_keybindings.sublime-keymap) in this repo to `~/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap`
     * Keymap files contain JSON so make sure they're valid when saving or Sublime Text will fail with errors.
 
 ##### Clojure Helpers
 
-The [`ClojureHelpers.py`](https://github.com/jasongilman/SublimeClojureSetup/blob/master/ClojureHelpers.py) file provides some helper functions that make working with Sublime REPL and Clojure a little better. These are associated with key bindings. You can also add your own helpers to this file.
+The [`ClojureHelpers.py`](blob/master/ClojureHelpers.py) file provides some helper functions that make working with Sublime REPL and Clojure a little better. These are associated with key bindings. You can also add your own helpers to this file.
 
   * Copy `ClojureHelpers.py` to `~/Library/Application Support/Sublime Text 2/Packages/User/`
     * `cp ClojureHelpers.py ~/Library/Application Support/Sublime Text 2/Packages/User/`
