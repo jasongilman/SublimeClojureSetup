@@ -1,0 +1,61 @@
+[
+  ////////////////////////////////////////////////////////////
+  // Clojure setup
+  // SublimeREPL bindings:
+  // =====================
+
+  { "keys": ["alt+super+b"], "command": "repl_transfer_current", "args": {"scope": "block"}},
+
+  // Commands located in ClojureHelpers.py
+  { "keys": ["alt+super+s"], "command": "load_selection_in_repl"},
+
+  // Replaces a built in command in Sublime REPL (it's faster)
+  // Press ctrl and comma, release then press f to laod the current file in the repl.
+  { "keys": ["ctrl+,", "f"], "command": "load_file_in_repl"},
+
+
+  // Refreshes all code. Handle compilation errors correctly where user/reset will disappear.
+  { "keys": ["alt+super+r"], "command": "run_command_in_repl",
+   "args": {"command": "(let [r 'user/reset] (if (find-var r) ((resolve r)) (clojure.tools.namespace.repl/refresh :after r)))"}},
+
+  // Exit the repl
+  { "keys": ["ctrl+d"], "command": "run_command_in_repl", "args": {"command": "exit"}},
+
+
+  // Pretty print the last returned value
+  { "keys": ["alt+super+p"], "command": "run_command_in_repl", "args": {"command": "(pp)"}},
+
+  { "keys": ["alt+super+x"], "command": "run_clojure_tests_from_current_namespace_in_repl"},
+  { "keys": ["alt+super+a"], "command": "run_all_clojure_tests_from_project_in_repl"},
+
+  // Print documentation for selected function call.
+  { "keys": ["alt+super+d"], "command": "run_on_selection_in_repl", "args": {"function": "clojure.repl/doc"}},
+
+  // Print source code for selected function call.
+  { "keys": ["alt+super+c"], "command": "run_on_selection_in_repl", "args": {"function": "clojure.repl/source"}},
+
+
+  // BracketHighlighter bindings:
+  // ===========================
+
+  // Swap bracket type
+  { "keys": ["ctrl+shift+]"],
+    "command": "swap_brackets"},
+
+  // Swap quotes (only goes boths ways in supported languages...)
+  { "keys": ["ctrl+shift+'"],
+    "command": "bh_key", "args": {"lines" : true, "plugin": {"type": ["single_quote", "double_quote", "py_single_quote", "py_double_quote"], "command": "bh_modules.swapquotes"} }},
+
+  // Select text between brackets
+  // Jason Note: I found ctrl+shift+m works better for selecting text in brackets. It keeps expanding too.
+  { "keys": ["ctrl+alt+a"],
+    "command": "bh_key", "args": {"lines" : true, "plugin": {"type": ["__all__"], "command": "bh_modules.bracketselect"} } },
+
+  // Select tag name of HTML/XML tag (both opening name and closing)
+  { "keys": ["ctrl+alt+t"],
+    "command": "bh_key", "args": {"plugin": {"type": ["cfml", "html", "angle"], "command": "bh_modules.tagnameselect"} } },
+
+  // Toggle high visibility mode
+  { "keys": ["alt+super+="],
+    "command": "bh_toggle_high_visibility"}
+]
