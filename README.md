@@ -77,8 +77,10 @@ Add this code to your user preferences
 
   * Add the following lines to `~/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings`
 
-    // This needs to be disabled since we're using Bracket Highlighter for highlighting brackets
-    "match_brackets": false
+```
+// This needs to be disabled since we're using Bracket Highlighter for highlighting brackets
+"match_brackets": false
+```
 
 ##### Fix identification of Clojure Symbols
 
@@ -86,13 +88,15 @@ Sublime Text doesn't correctly identify Clojure symbols.
 
   * Create `~/Library/Application Support/Sublime Text 2/Packages/User/Clojure.sublime-settings` with the following contents.
 
-    {
-      "extensions":
-      [
-        "cljs"
-      ],
-      "word_separators": "/\\()\"',;!@$%^&|+=[]{}`~?"
-    }
+```
+{
+  "extensions":
+  [
+    "cljs"
+  ],
+  "word_separators": "/\\()\"',;!@$%^&|+=[]{}`~?"
+}
+```
 
 
 ##### Disable auto-pairing of single quotes
@@ -109,13 +113,15 @@ This file updates SublimeREPL settings so leiningen in on the path. Update this 
 
   * Edit ~/Library/Application Support/Sublime Text 2/Packages/User/SublimeREPL.sublime-settings with the following changes
 
-    {
-      // Has to include path to lein
-      "default_extend_env":
-      {
-        "PATH": "REPLACE_ME_WITH_LEIN_DIR:{PATH}:/usr/local/bin"
-      }
-    }
+```
+{
+  // Has to include path to lein
+  "default_extend_env":
+  {
+    "PATH": "REPLACE_ME_WITH_LEIN_DIR:{PATH}:/usr/local/bin"
+  }
+}
+```
 
 ##### Setup Keybindings
 
