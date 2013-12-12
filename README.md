@@ -63,10 +63,10 @@ These are setup in the instructions Sublime Text setup instructions below.
 
 #### Install These Packages
 
-Install these packages using the package manager
+Install these packages using the package manager.
 
-  * Sublime REPL
-  * Lisp indent
+  * SublimeREPL
+  * lispindent
   * BracketHighlighter
 
 #### Sublime Preference Files
