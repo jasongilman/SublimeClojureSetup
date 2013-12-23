@@ -13,20 +13,20 @@
   // Press ctrl and comma, release then press f to laod the current file in the repl.
   { "keys": ["ctrl+,", "f"], "command": "load_file_in_repl"},
 
-
   // Refreshes all code. Handle compilation errors correctly where user/reset will disappear.
-  { "keys": ["alt+super+r"], "command": "run_command_in_repl",
-   "args": {"command": "(let [r 'user/reset] (if (find-var r) ((resolve r)) (clojure.tools.namespace.repl/refresh :after r)))"}},
+  { "keys": ["alt+super+r"], "command": "refresh_namespaces_in_repl"},
 
   // Exit the repl
   { "keys": ["ctrl+d"], "command": "run_command_in_repl", "args": {"command": "exit"}},
 
-
   // Pretty print the last returned value
   { "keys": ["alt+super+p"], "command": "run_command_in_repl", "args": {"command": "(pp)"}},
 
-  { "keys": ["alt+super+x"], "command": "run_clojure_tests_from_current_namespace_in_repl"},
-  { "keys": ["alt+super+a"], "command": "run_all_clojure_tests_from_project_in_repl"},
+  // Refresh code then run tests from the current namespace in repl
+  { "keys": ["alt+super+x"], "command": "run_command_in_namespace_in_repl", "args": {"command": "(run-tests)", "refresh_namespaces": true}},
+
+  // Refresh code then run all tests in in the project in the repl.
+  { "keys": ["alt+super+a"], "command": "run_command_in_repl", "args": {"command": "(run-all-tests)", "refresh_namespaces": true}},
 
   // Print documentation for selected function call.
   { "keys": ["alt+super+d"], "command": "run_on_selection_in_repl", "args": {"function": "clojure.repl/doc"}},

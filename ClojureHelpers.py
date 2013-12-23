@@ -1,12 +1,17 @@
 import re, sublime, sublime_plugin, sublimerepl, text_transfer
 from sublimerepl import manager
 
+REFRESH_NAMESPACES_CMD = "(let [r 'user/reset] (if (find-var r) ((resolve r)) (clojure.tools.namespace.repl/refresh :after r)))"
+
 # Allows running an arbitrary command in the REPL but not in the current namespace
 # Example key binding:
 # { "keys": ["alt+super+r"], "command": "run_command_in_repl", "args": {"command": "(user/reset)"}},
 # This will run (user/reset) in the repl
 class RunCommandInReplCommand(text_transfer.ReplTransferCurrent):
-  def run(self, edit, command):
+  def run(self, edit, command, refresh_namespaces=False):
+    if refresh_namespaces:
+      self.view.window().run_command("refresh_namespaces_in_repl")
+
     external_id = self.repl_external_id()
     for rv in manager.find_repl(external_id):
       command += rv.repl.cmd_postfix
@@ -16,6 +21,27 @@ class RunCommandInReplCommand(text_transfer.ReplTransferCurrent):
       break
     else:
       sublime.error_message("Cannot find REPL for '{}'".format(external_id))
+
+# Refreshes all the namespaces in the REPL using clojure.tools.namespace
+class RefreshNamespacesInReplCommand(RunCommandInReplCommand):
+  def run(self, edit):
+    super( RefreshNamespacesInReplCommand, self ).run(edit, REFRESH_NAMESPACES_CMD)
+
+# Allows running an arbitrary command in the REPL in the current namespace
+# Example key binding:
+# { "keys": ["alt+super+r"], "command": "run_command_in_namespace_in_repl", "args": {"command": "(foo)"}},
+# This will run (foo) in the repl in the current namespace.
+class RunCommandInNamespaceInReplCommand(text_transfer.ReplSend):
+  def run(self, edit, command, refresh_namespaces=False):
+
+    if refresh_namespaces:
+      self.view.window().run_command("refresh_namespaces_in_repl")
+
+    external_id = self.repl_external_id()
+    super( RunCommandInNamespaceInReplCommand, self ).run(edit, external_id, command)
+
+  def repl_external_id(self):
+    return self.view.scope_name(0).split(" ")[0].split(".", 1)[1]
 
 # Allows running a function specified in arguments on the current text selected in the repl.
 # Example key binding:
@@ -61,23 +87,3 @@ class LoadSelectionInReplCommand(text_transfer.ReplSend):
 
   def repl_external_id(self):
     return self.view.scope_name(0).split(" ")[0].split(".", 1)[1]
-
-class RunAllClojureTestsFromProjectInReplCommand(text_transfer.ReplTransferCurrent):
-  def run(self, edit):
-    form = "(do (clojure.tools.namespace.repl/refresh) (apply clojure.test/run-tests (clojure.tools.namespace.find/find-namespaces-in-dir (clojure.java.io/file \"test\"))))"
-    self.view.window().run_command("refresh_namespaces_in_repl")
-    self.view.window().run_command("repl_send", {"external_id": self.repl_external_id(), "text": form})
-
-class RunClojureTestsFromCurrentNamespaceInReplCommand(text_transfer.ReplTransferCurrent):
-  def run(self, edit):
-    if sublimerepl.manager.repl_view(self.view):
-      return
-    ns = re.sub("ns\s*", "", self.view.substr(self.view.find("ns\s*\S+",0)))
-
-    default_test_ns = re.sub("(.*)(?<!-test)\\Z","\\1-test", ns, 1)
-    alt_style_test_ns = re.sub("\A([^\\.]*\\.)(?!test)","\\1test.", ns, 1)
-    form = "(try (clojure.test/run-tests '" + default_test_ns + ")\n  (catch Exception e\n    (clojure.test/run-tests '" + alt_style_test_ns + ")))"
-    form = "(try (clojure.test/run-tests '" + ns + ")\n  (catch Exception e\n    '" + form+ "))"
-
-    self.view.window().run_command("run_command_in_repl", {"command": "(let [r 'user/reset] (if (find-var r) ((resolve r)) (clojure.tools.namespace.repl/refresh :after r)))"})
-    self.view.window().run_command("repl_send", {"external_id": self.repl_external_id(), "text": form})
