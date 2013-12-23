@@ -34,6 +34,7 @@ The Sublime REPL is used to open a REPL within Sublime Text. It can be opened by
   * Invoke the command pallet - __cmd + shift + P__
   * Type `repl` and select __SublimeREPL: Clojure__
     * Doing this repeatedly will make it the first one to come up when typing `repl`
+  * Alternately it can be opened with the key combination __alt + super + l__.
 
 __Very Important__: Most of the time you'll want a REPL open for the current project. Sublime REPL only knows to connect the REPL to the current project if you start the REPL with a Clojure file open in the project and your cursor is in it.
 
@@ -43,13 +44,15 @@ __Very Important__: Most of the time you'll want a REPL open for the current pro
 These are setup in the instructions Sublime Text setup instructions below.
 
   * Bindings interacting with the REPL (Require a single Clojure REPL open and running.)
+    * __alt + super + l__ - Starts a new Clojure REPL. Make sure to have cusor in an open Clojure file.
     * __ctrl + d__ - Exit the repl
     * __alt + cmd + r__ - Refresh all code in project by running user/reset. It will fail if a project does not define this function.
     * __alt + cmd + b__ - Transfer text from the current block to the repl and executes it.
         * This is useful when you have sample code in a clojure file open next to a REPL. Put your cursor within a block of the sample code and invoke the keystroke. The closest block around or near the cursor will be executed in the REPL within the namespace of the file it comes from.
     * __alt + cmd + s__ - Transfers selected text to the repl and executes it. Similar to alt + cmd + b.
-    * __alt + cmd + x__ - Runs tests from current test file.
+    * __alt + cmd + x__ - Runs tests from current test file. Refreshes code in project first.
       * Invoke the keystroke with your cursor in the test file. It will run all the tests in the file in the REPL.
+    * __alt + cmd + a__ - Runs all the tests in the project. Refreshes code in project first.
     * __alt + cmd + d__ - Print documentation of the selected function.
       * Select a function name in a file including the namespace if part of the call and hit the keystroke.
     * __alt + cmd + c__ - Print source code of the selected function.
@@ -68,6 +71,7 @@ Install these packages using the package manager.
   * SublimeREPL
   * lispindent
   * BracketHighlighter
+  * EnhancedClojure
 
 #### Sublime Preference Files
 

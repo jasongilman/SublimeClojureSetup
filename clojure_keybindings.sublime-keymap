@@ -4,6 +4,12 @@
   // SublimeREPL bindings:
   // =====================
 
+  // Start a new clojure repl. Leaves existing open. Note that SublimeREPL doesn't handle multiple
+  // REPLs very well. They will work but it's not clear which repl will receive commands sent from
+  // another clojure editor.
+  { "keys": ["alt+super+l"], "command": "run_existing_window_command", "args":{"id": "repl_clojure",
+  "file": "config/Clojure/Main.sublime-menu"}},
+
   { "keys": ["alt+super+b"], "command": "repl_transfer_current", "args": {"scope": "block"}},
 
   // Commands located in ClojureHelpers.py
