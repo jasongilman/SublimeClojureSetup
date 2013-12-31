@@ -127,6 +127,19 @@ This file updates SublimeREPL settings so leiningen in on the path. Update this 
 }
 ```
 
+#### Speed up text transfer in SublimeREPL
+
+Change `~/Library/Application Support/Sublime Text 2/Packages/SublimeREPL/config/Clojure/Main.sublime-menu` line 22 from
+```
+"osx":  ["lein", "repl"]
+```
+to:
+```
+"osx":  ["lein", "trampoline", "run", "-m", "clojure.main"]
+```
+
+This greatly improves the speed at which text is sent from a Clojure window to the REPL. Based on answer here http://stackoverflow.com/questions/20835788/is-it-normal-to-have-really-slow-text-transfer-in-sublime-text-2-with-the-clojur
+
 ##### Setup Keybindings
 
 We'll setup some keybindings in Sublime Text to make it easier to send code to the repl, run tests, etc.
