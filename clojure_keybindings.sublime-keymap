@@ -23,7 +23,7 @@
   { "keys": ["alt+super+r"], "command": "refresh_namespaces_in_repl"},
 
   // Exit the repl
-  { "keys": ["ctrl+d"], "command": "run_command_in_repl", "args": {"command": "exit"}},
+  { "keys": ["ctrl+d"], "command": "run_command_in_repl", "args": {"command": "(System/exit 0)"}},
 
   // Pretty print the last returned value
   { "keys": ["alt+super+p"], "command": "run_command_in_repl", "args": {"command": "(pp)"}},
