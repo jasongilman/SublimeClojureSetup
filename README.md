@@ -98,7 +98,7 @@ Sublime Text doesn't correctly identify Clojure symbols.
   [
     "cljs"
   ],
-  "word_separators": "/\\()\"',;!@$%^&|+=[]{}`~"
+  "word_separators": "/\\()\"',;@$%^&|[]{}`~"
 }
 ```
 
