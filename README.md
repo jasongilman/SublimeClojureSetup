@@ -154,5 +154,8 @@ The [`ClojureHelpers.py`](ClojureHelpers.py) file provides some helper functions
   * Copy `ClojureHelpers.py` to `~/Library/Application Support/Sublime Text 2/Packages/User/`
     * `cp ClojureHelpers.py ~/Library/Application Support/Sublime Text 2/Packages/User/`
 
+##### Clojure Snippets
+
+Copy the file `clojure_snippets.sublime-snippet` to `~/Library/Application Support/Sublime Text 2/Packages/User/clojure_snippets.sublime-snippet`. It contains some useful completions.
 
 

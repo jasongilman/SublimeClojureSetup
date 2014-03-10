@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+(alex-and-georges.debug-repl/debug-repl)
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>debug-repl</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.clojure</scope>
+</snippet>
