@@ -126,6 +126,11 @@ This file updates SublimeREPL settings so leiningen in on the path. Update this 
   }
 }
 ```
+#### Configure Lisp Indentation Settings
+
+The lispindent.sublime-settings defines which forms use function style indentation. I've added additional ones that are typically used in Clojure Applications
+
+    * `cp lispindent.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/`
 
 #### Speed up text transfer in SublimeREPL
 
@@ -152,7 +157,7 @@ We'll setup some keybindings in Sublime Text to make it easier to send code to t
 The [`ClojureHelpers.py`](ClojureHelpers.py) file provides some helper functions that make working with Sublime REPL and Clojure a little better. These are associated with key bindings. You can also add your own helpers to this file.
 
   * Copy `ClojureHelpers.py` to `~/Library/Application Support/Sublime Text 2/Packages/User/`
-    * `cp ClojureHelpers.py ~/Library/Application Support/Sublime Text 2/Packages/User/`
+    * `cp ClojureHelpers.py ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/`
 
 ##### Clojure Snippets
 

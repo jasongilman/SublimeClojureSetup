@@ -1,0 +1,16 @@
+{
+  "languages": {
+    "clojure": {
+      "detect": ".*\\.(clj|cljs|edn)$",
+      "syntax": "Clojure.tmLanguage",
+      "default_indent": "function",
+      "regex":
+      ["(ns|fn|def[^\\s]*|bound-fn|if|if-not|case|condp|when|while|when-not|when-first|do|future|",
+       "comment|doto|locking|proxy|with-open|with-precision|with-local-vars|reify|deftype|defrecord|",
+       "defprotocol|extend|extend-protocol|extend-type|try|catch|finally|let|letfn|binding|loop|for|",
+       "doseq|dotimes|when-let|if-let|defstruct|struct-map|defmethod|testing|deftest|context|use-fixtures|",
+       "POST|GET|PUT|DELETE|with-redefs|",
+       "handler-case|handle|dotrace|deftrace|([a-z\\-A-Z0-9_]+/)?for-all)$"]
+    }
+  }
+}
