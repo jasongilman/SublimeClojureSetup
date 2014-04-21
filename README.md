@@ -52,6 +52,7 @@ These are setup in the instructions Sublime Text setup instructions below.
     * __alt + cmd + s__ - Transfers selected text to the repl and executes it. Similar to alt + cmd + b.
     * __alt + cmd + x__ - Runs tests from current test file. Refreshes code in project first.
       * Invoke the keystroke with your cursor in the test file. It will run all the tests in the file in the REPL.
+    * __alt + cmd + t__ - Runs a selected test var. Configurable whether this does a refresh first or not.
     * __alt + cmd + a__ - Runs all the tests in the project. Refreshes code in project first.
     * __alt + cmd + d__ - Print documentation of the selected function.
       * Select a function name in a file including the namespace if part of the call and hit the keystroke.
