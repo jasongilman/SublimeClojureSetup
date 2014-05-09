@@ -56,7 +56,7 @@ class TestSelectedVarInReplCommand(text_transfer.ReplSend):
       self.view.window().run_command("refresh_namespaces_in_repl")
 
     selected = selected_text(self)
-    text = "(do (test-var #'" + selected +") (println \"tested " + selected +"\"))"
+    text = "(do (test-vars [#'" + selected +"]) (println \"tested " + selected +"\"))"
     external_id = repl_external_id(self)
     super(TestSelectedVarInReplCommand, self).run(edit, external_id, text)
 
