@@ -80,7 +80,7 @@ Install these packages using the package manager.
 
 Add this code to your user preferences
 
-  * Add the following lines to `~/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings`
+  * Add the following lines to `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings`
 
 ```
 // This needs to be disabled since we're using Bracket Highlighter for highlighting brackets
@@ -91,7 +91,7 @@ Add this code to your user preferences
 
 Sublime Text doesn't correctly identify Clojure symbols.
 
-  * Create `~/Library/Application Support/Sublime Text 2/Packages/User/Clojure.sublime-settings` with the following contents.
+  * Create `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Clojure.sublime-settings` with the following contents.
 
 ```
 {
@@ -108,7 +108,7 @@ Sublime Text doesn't correctly identify Clojure symbols.
 
 Clojure uses single quote characters by themselves like `(def my-literal-list '(1 2 3))`. Sublime Text will automatically close single quotes. This becomes annoying when writing Clojure code in sublime text. Turn it off by following these steps:
 
-  * Open `~/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap`
+  * Open `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/Default/Default (OSX).sublime-keymap`
   * Search for "Auto-pair single quotes" which should be on line 274 or so.
   * Comment out the block of about 30 lines directly following that comment to disable pairing of single quotes only.
 
@@ -116,7 +116,7 @@ Clojure uses single quote characters by themselves like `(def my-literal-list '(
 
 This file updates SublimeREPL settings so leiningen in on the path. Update this file to include the directory where you installed leiningen.
 
-  * Edit `~/Library/Application Support/Sublime Text 2/Packages/User/SublimeREPL.sublime-settings` with the following changes
+  * Edit `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/SublimeREPL.sublime-settings` with the following changes
 
 ```
 {
@@ -135,7 +135,7 @@ The lispindent.sublime-settings defines which forms use function style indentati
 
 #### Speed up text transfer in SublimeREPL
 
-Change `~/Library/Application Support/Sublime Text 2/Packages/SublimeREPL/config/Clojure/Main.sublime-menu` line 22 from
+Change `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/SublimeREPL/config/Clojure/Main.sublime-menu` line 22 from
 ```
 "osx":  ["lein", "repl"]
 ```
@@ -150,18 +150,18 @@ This greatly improves the speed at which text is sent from a Clojure window to t
 
 We'll setup some keybindings in Sublime Text to make it easier to send code to the repl, run tests, etc.
 
-  * Append the [`clojure_keybindings.sublime-keymap`](clojure_keybindings.sublime-keymap) in this repo to `~/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap`
+  * Append the [`clojure_keybindings.sublime-keymap`](clojure_keybindings.sublime-keymap) in this repo to `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Default (OSX).sublime-keymap`
     * Keymap files contain JSON so make sure they're valid when saving or Sublime Text will fail with errors.
 
 ##### Clojure Helpers
 
 The [`ClojureHelpers.py`](ClojureHelpers.py) file provides some helper functions that make working with Sublime REPL and Clojure a little better. These are associated with key bindings. You can also add your own helpers to this file.
 
-  * Copy `ClojureHelpers.py` to `~/Library/Application Support/Sublime Text 2/Packages/User/`
+  * Copy `ClojureHelpers.py` to `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/`
     * `cp ClojureHelpers.py ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/`
 
 ##### Clojure Snippets
 
-Copy the file `clojure_snippets.sublime-snippet` to `~/Library/Application Support/Sublime Text 2/Packages/User/clojure_snippets.sublime-snippet`. It contains some useful completions.
+Copy the file `clojure_snippets.sublime-snippet` to `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/clojure_snippets.sublime-snippet`. It contains some useful completions.
 
 
