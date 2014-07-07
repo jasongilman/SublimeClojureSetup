@@ -57,6 +57,8 @@ These are setup in the instructions Sublime Text setup instructions below.
     * __alt + cmd + d__ - Print documentation of the selected function.
       * Select a function name in a file including the namespace if part of the call and hit the keystroke.
     * __alt + cmd + c__ - Print source code of the selected function.
+    * __alt + cmd + o__ - Opens the file and scrolls to the line where the given var is defined.
+      * Assumes the `subl` command line argument works. See https://www.sublimetext.com/docs/2/osx_command_line.html
     * __alt + cmd + p__ - Pretty print the value that was last returned in the repl.
   * Other useful keystrokes (Built into Sublime)
     * __ctrl + m__ - Jumps cursor to close or beginning of current block. Press repeatedly to go back and forth.

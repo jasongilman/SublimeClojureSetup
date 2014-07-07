@@ -44,6 +44,9 @@
   // Print source code for selected function call.
   { "keys": ["alt+super+c"], "command": "run_on_selection_in_repl", "args": {"function": "clojure.repl/source"}},
 
+  // Open the file and line containing a var that is currently selected
+  { "keys": ["alt+super+o"], "command": "open_file_containing_var"},
+
 
   // BracketHighlighter bindings:
   // ===========================

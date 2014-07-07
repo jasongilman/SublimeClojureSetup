@@ -71,6 +71,18 @@ class RunOnSelectionInReplCommand(text_transfer.ReplSend):
     external_id = repl_external_id(self)
     super( RunOnSelectionInReplCommand, self ).run(edit, external_id, text)
 
+# Opens the file containing the currently selected var in the REPL. Assumes that the var is in a file
+# on the current classpath so it won't work for files that are in a Jar dependency. Assumes that
+# the Sublime command line alias "subl" can be used to invoke sublime.
+class OpenFileContainingVarCommand(text_transfer.ReplSend):
+  def run(self, edit):
+    text = """(let [{:keys [file line]} (meta #'THE_VAR)
+                    file (.getPath (.getResource (clojure.lang.RT/baseLoader) file))]
+                (println "Opening file" file)
+                (clojure.java.shell/sh "subl" (str file ":" line)))""".replace("THE_VAR", selected_text(self))
+    external_id = repl_external_id(self)
+    super( OpenFileContainingVarCommand, self ).run(edit, external_id, text)
+
 # Loads the current file in the REPL by telling the REPL to load it using the complete path
 # This is much faster than the built in sublime repl command which copies the entire file into the
 # REPL.
