@@ -104,7 +104,7 @@ class ListVarsWithDocsInSelectedNsCommand(text_transfer.ReplSend):
                     selected-ns (get (ns-aliases *ns*) selected-symbol selected-symbol)]
                 (println (str "\n" selected-ns ":"))
                 (println "" (:doc (meta (the-ns selected-ns))))
-                (doseq [s (clojure.repl/dir-fn selected-ns) :let [m (-> (str selected-symbol "/" s) symbol find-var meta)]]
+                (doseq [s (clojure.repl/dir-fn selected-ns) :let [m (-> (str selected-ns "/" s) symbol find-var meta)]]
                   (println "---------------------------")
                   (println (:name m))
                   (cond
