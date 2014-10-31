@@ -34,7 +34,6 @@
   // Runs the single selected test. You must select the test name.
   { "keys": ["alt+super+t"], "command": "test_selected_var_in_repl", "args": {"refresh_namespaces": false}},
 
-
   // Refresh code then run all tests in in the project in the repl.
   { "keys": ["alt+super+a"], "command": "run_command_in_repl", "args": {"command": "(run-all-tests)", "refresh_namespaces": true}},
 
@@ -43,6 +42,12 @@
 
   // Print source code for selected function call.
   { "keys": ["alt+super+c"], "command": "run_on_selection_in_repl", "args": {"function": "clojure.repl/source"}},
+
+  // List functions in a namespace
+  { "keys": ["alt+super+n"], "command": "list_vars_in_selected_ns"},
+
+  // List functions with documentation in a namespace
+  { "keys": ["alt+super+shift+n"], "command": "list_vars_with_docs_in_selected_ns"},
 
   // Open the file and line containing a var that is currently selected
   { "keys": ["alt+super+o"], "command": "open_file_containing_var"},

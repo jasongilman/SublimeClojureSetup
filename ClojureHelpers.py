@@ -79,9 +79,43 @@ class OpenFileContainingVarCommand(text_transfer.ReplSend):
     text = """(let [{:keys [file line]} (meta #'THE_VAR)
                     file (.getPath (.getResource (clojure.lang.RT/baseLoader) file))]
                 (println "Opening file" file)
-                (clojure.java.shell/sh "subl" (str file ":" line)))""".replace("THE_VAR", selected_text(self))
+                (clojure.java.shell/sh "subl" (str file ":" line))
+                nil)""".replace("THE_VAR", selected_text(self))
     external_id = repl_external_id(self)
     super( OpenFileContainingVarCommand, self ).run(edit, external_id, text)
+
+# Lists all the vars in the selected namespace or namespace alias
+class ListVarsInSelectedNsCommand(text_transfer.ReplSend):
+  def run(self, edit):
+    text = """(let [selected-symbol 'THE_NS
+                    selected-ns (get (ns-aliases *ns*) selected-symbol selected-symbol)]
+                (println "\nVars in" (str selected-ns ":"))
+                (println "------------------------------")
+                (doseq [s (clojure.repl/dir-fn selected-ns)]
+                  (println s))
+                (println "------------------------------"))""".replace("THE_NS", selected_text(self))
+    external_id = repl_external_id(self)
+    super( ListVarsInSelectedNsCommand, self ).run(edit, external_id, text)
+
+# Lists all the vars with their documentation in the selected namespace or namespace alias
+class ListVarsWithDocsInSelectedNsCommand(text_transfer.ReplSend):
+  def run(self, edit):
+    text = """(let [selected-symbol 'THE_NS
+                    selected-ns (get (ns-aliases *ns*) selected-symbol selected-symbol)]
+                (println (str "\n" selected-ns ":"))
+                (println "" (:doc (meta (the-ns selected-ns))))
+                (doseq [s (clojure.repl/dir-fn selected-ns) :let [m (-> (str selected-symbol "/" s) symbol find-var meta)]]
+                  (println "---------------------------")
+                  (println (:name m))
+                  (cond
+                    (:forms m) (doseq [f (:forms m)]
+                                 (print "  ")
+                                 (prn f))
+                    (:arglists m) (prn (:arglists m)))
+                  (println " " (:doc m)))
+                (println "------------------------------"))""".replace("THE_NS", selected_text(self))
+    external_id = repl_external_id(self)
+    super( ListVarsWithDocsInSelectedNsCommand, self ).run(edit, external_id, text)
 
 # Loads the current file in the REPL by telling the REPL to load it using the complete path
 # This is much faster than the built in sublime repl command which copies the entire file into the

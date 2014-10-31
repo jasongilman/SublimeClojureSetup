@@ -46,6 +46,7 @@ These are setup in the instructions Sublime Text setup instructions below.
   * Bindings interacting with the REPL (Require a single Clojure REPL open and running.)
     * __alt + super + l__ - Starts a new Clojure REPL. Make sure to have cusor in an open Clojure file.
     * __ctrl + d__ - Exit the repl
+    * __ctrl + l__ - Clear the repl
     * __alt + cmd + r__ - Refresh all code in project by running user/reset. It will fail if a project does not define this function.
     * __alt + cmd + b__ - Transfer text from the current block to the repl and executes it.
         * This is useful when you have sample code in a clojure file open next to a REPL. Put your cursor within a block of the sample code and invoke the keystroke. The closest block around or near the cursor will be executed in the REPL within the namespace of the file it comes from.
@@ -57,6 +58,8 @@ These are setup in the instructions Sublime Text setup instructions below.
     * __alt + cmd + d__ - Print documentation of the selected function.
       * Select a function name in a file including the namespace if part of the call and hit the keystroke.
     * __alt + cmd + c__ - Print source code of the selected function.
+    * __alt + cmd + n__ - Print the vars in the selected namespace or namespace alias.
+    * __alt + cmd + shift + n__ - Print the documentation of the vars in the selected namespace or namespace alias.
     * __alt + cmd + o__ - Opens the file and scrolls to the line where the given var is defined.
       * Assumes the `subl` command line argument works. See https://www.sublimetext.com/docs/2/osx_command_line.html
     * __alt + cmd + p__ - Pretty print the value that was last returned in the repl.
