@@ -19,7 +19,7 @@
   // Press ctrl and comma, release then press f to laod the current file in the repl.
   { "keys": ["ctrl+,", "f"], "command": "load_file_in_repl"},
 
-  // Refreshes all code. Handle compilation errors correctly where user/reset will disappear.
+  // Resets and Refreshes all code. Handle compilation errors correctly where user/reset will disappear.
   { "keys": ["alt+super+r"], "command": "refresh_namespaces_in_repl"},
 
   // Exit the repl
@@ -34,8 +34,9 @@
   // Runs the single selected test. You must select the test name.
   { "keys": ["alt+super+t"], "command": "test_selected_var_in_repl", "args": {"refresh_namespaces": false}},
 
-  // Refresh code then run all tests in in the project in the repl.
-  { "keys": ["alt+super+a"], "command": "run_command_in_repl", "args": {"command": "(run-all-tests)", "refresh_namespaces": true}},
+  // Refresh code then run all tests in in the project in the repl in a future.
+  // Cancelling all running tests can be done by issuing the reset command. (cmd + alt + r)
+  { "keys": ["alt+super+a"], "command": "run_command_in_repl", "args": {"command": "(def all-tests-future (future (time (run-all-tests))))", "refresh_namespaces": true}},
 
   // Print documentation for selected function call.
   { "keys": ["alt+super+d"], "command": "run_on_selection_in_repl", "args": {"function": "clojure.repl/doc"}},
