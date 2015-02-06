@@ -19,8 +19,12 @@
   // Press ctrl and comma, release then press f to laod the current file in the repl.
   { "keys": ["ctrl+,", "f"], "command": "load_file_in_repl"},
 
-  // Resets and Refreshes all code. Handle compilation errors correctly where user/reset will disappear.
-  { "keys": ["alt+super+r"], "command": "refresh_namespaces_in_repl"},
+  // Refreshes all code. Handle compilation errors correctly where user/reset will disappear.
+  { "keys": ["alt+super+r"], "command": "refresh_namespaces_in_repl", "args": {"clean": false}},
+
+  // Refreshes all code after running (clojure.tools.namespace.repl/clear).
+  // This can fix problems if some of the namespaces have been removed etc.
+  {"keys": ["alt+super+shift+r"], "command": "refresh_namespaces_in_repl", "args": {"clean": true}},
 
   // Exit the repl
   { "keys": ["ctrl+d"], "command": "run_command_in_repl", "args": {"command": "(System/exit 0)"}},

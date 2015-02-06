@@ -32,8 +32,12 @@ class RunCommandInReplCommand(text_transfer.ReplTransferCurrent):
 
 # Refreshes all the namespaces in the REPL using clojure.tools.namespace
 class RefreshNamespacesInReplCommand(RunCommandInReplCommand):
-  def run(self, edit):
-    super( RefreshNamespacesInReplCommand, self ).run(edit, REFRESH_NAMESPACES_CMD)
+  def run(self, edit, clean):
+    if clean:
+      refresh_command = "(clojure.tools.namespace.repl/clear) " + REFRESH_NAMESPACES_CMD
+    else:
+      refresh_command = REFRESH_NAMESPACES_CMD
+    super( RefreshNamespacesInReplCommand, self ).run(edit, refresh_command)
 
 # Allows running an arbitrary command in the REPL in the current namespace
 # Example key binding:

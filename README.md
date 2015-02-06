@@ -47,7 +47,8 @@ These are setup in the instructions Sublime Text setup instructions below.
     * __alt + super + l__ - Starts a new Clojure REPL. Make sure to have cusor in an open Clojure file.
     * __ctrl + d__ - Exit the repl
     * __ctrl + l__ - Clear the repl
-    * __alt + cmd + r__ - Refresh all code in project by running user/reset. It will fail if a project does not define this function.
+    * __alt + cmd + r__ - Refresh all code in project by running user/reset. It will fail if a project does not define the user/reset function.
+    * __alt + cmd + shift + r__ - The super refresh. If you delete files or rename things sometimes clojure.tools.namespace will have issues. This runs (clojure.tools.namespace.repl/clear) prior to calling reset.
     * __alt + cmd + b__ - Transfer text from the current block to the repl and executes it.
         * This is useful when you have sample code in a clojure file open next to a REPL. Put your cursor within a block of the sample code and invoke the keystroke. The closest block around or near the cursor will be executed in the REPL within the namespace of the file it comes from.
     * __alt + cmd + s__ - Transfers selected text to the repl and executes it. Similar to alt + cmd + b.
