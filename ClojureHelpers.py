@@ -18,7 +18,7 @@ def repl_external_id(s):
 class RunCommandInReplCommand(text_transfer.ReplTransferCurrent):
   def run(self, edit, command, refresh_namespaces=False):
     if refresh_namespaces:
-      self.view.window().run_command("refresh_namespaces_in_repl")
+      self.view.window().run_command("refresh_namespaces_in_repl", {"clean": False})
 
     external_id = self.repl_external_id()
     for rv in manager.find_repl(external_id):
@@ -47,7 +47,7 @@ class RunCommandInNamespaceInReplCommand(text_transfer.ReplSend):
   def run(self, edit, command, refresh_namespaces=False):
 
     if refresh_namespaces:
-      self.view.window().run_command("refresh_namespaces_in_repl")
+      self.view.window().run_command("refresh_namespaces_in_repl", {"clean": False})
 
     external_id = repl_external_id(self)
     super( RunCommandInNamespaceInReplCommand, self ).run(edit, external_id, command)
@@ -57,7 +57,7 @@ class TestSelectedVarInReplCommand(text_transfer.ReplSend):
   def run(self, edit, refresh_namespaces=False):
 
     if refresh_namespaces:
-      self.view.window().run_command("refresh_namespaces_in_repl")
+      self.view.window().run_command("refresh_namespaces_in_repl", {"clean": False})
 
     selected = selected_text(self)
     text = "(do (test-vars [#'" + selected +"]) (println \"tested " + selected +"\"))"
