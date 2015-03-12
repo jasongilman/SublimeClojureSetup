@@ -61,7 +61,7 @@ These are setup in the instructions Sublime Text setup instructions below.
     * __alt + cmd + c__ - Print source code of the selected function.
     * __alt + cmd + n__ - Print the vars in the selected namespace or namespace alias.
     * __alt + cmd + shift + n__ - Print the documentation of the vars in the selected namespace or namespace alias.
-    * __alt + cmd + o__ - Opens the file and scrolls to the line where the given var is defined.
+    * __alt + cmd + o__ - Opens the file and scrolls to the line where the selected var is defined. Also works on selected namespaces.
       * Assumes the `subl` command line argument works. See https://www.sublimetext.com/docs/2/osx_command_line.html
     * __alt + cmd + p__ - Pretty print the value that was last returned in the repl.
   * Other useful keystrokes (Built into Sublime)
