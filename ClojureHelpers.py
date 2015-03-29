@@ -75,24 +75,43 @@ class RunOnSelectionInReplCommand(text_transfer.ReplSend):
     external_id = repl_external_id(self)
     super( RunOnSelectionInReplCommand, self ).run(edit, external_id, text)
 
-# Opens the file containing the currently selected var or namespace in the REPL. Assumes that the var
-# is in a file on the current classpath so it won't work for files that are in a Jar dependency.
+# Opens the file containing the currently selected var or namespace in the REPL. If the file is located
+# inside of a jar file it will decompress the jar file then open it. It will first check to see if a
+# jar file has already been decompressed once to avoid doing it multiple times for the same library.
 # Assumes that the Sublime command line alias "subl" can be used to invoke sublime.
 class OpenFileContainingVarCommand(text_transfer.ReplSend):
   def run(self, edit):
     text = """(let [var-sym 'THE_VAR
                     the-var (or (some->> (find-ns var-sym)
-                                        clojure.repl/dir-fn
-                                        first
-                                        name
-                                        (str (name var-sym) "/")
-                                        symbol)
+                                         clojure.repl/dir-fn
+                                         first
+                                         name
+                                         (str (name var-sym) "/")
+                                         symbol)
                                 var-sym)
                     {:keys [file line]} (meta (eval `(var ~the-var)))
-                    file (.getPath (.getResource (clojure.lang.RT/baseLoader) file))]
-                (println "Opening file" file)
-                (clojure.java.shell/sh "subl" (str file ":" line))
-                nil)""".replace("THE_VAR", selected_text(self))
+                    file-path (.getPath (.getResource (clojure.lang.RT/baseLoader) file))]
+                (if-let [[_
+                          jar-path
+                          partial-jar-path
+                          within-file-path] (re-find #"file:(.+/\.m2/repository/(.+\.jar))!/(.+)" file-path)]
+                  ;; The file is in a jar file in the maven repo. We'll decompress the jar file then open it
+                  (let [decompressed-path (str (System/getProperty "user.home")
+                                               "/.lein/tmp-sublime-jars/"
+                                               partial-jar-path)
+                        decompressed-file-path (str decompressed-path "/" within-file-path)
+                        decompressed-path-dir (clojure.java.io/file decompressed-path)]
+                    (when-not (.exists decompressed-path-dir)
+                      (println "decompressing" jar-path "to" decompressed-path)
+                      (.mkdirs decompressed-path-dir)
+                      (clojure.java.shell/sh "unzip" jar-path "-d" decompressed-path))
+                    (println "Opening file" decompressed-file-path)
+                    (clojure.java.shell/sh "subl" (str decompressed-file-path ":" line))
+                    nil)
+                  (do
+                    (println "Opening file" file-path)
+                    (clojure.java.shell/sh "subl" (str file-path ":" line))
+                    nil)))""".replace("THE_VAR", selected_text(self))
     external_id = repl_external_id(self)
     super( OpenFileContainingVarCommand, self ).run(edit, external_id, text)
 
