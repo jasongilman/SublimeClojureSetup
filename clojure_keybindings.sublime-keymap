@@ -33,7 +33,7 @@
   { "keys": ["alt+super+p"], "command": "run_command_in_repl", "args": {"command": "(pp)"}},
 
   // Refresh code then run tests from the current namespace in repl
-  { "keys": ["alt+super+x"], "command": "run_command_in_namespace_in_repl", "args": {"command": "(run-tests)", "refresh_namespaces": true}},
+  { "keys": ["alt+super+x"], "command": "run_command_in_namespace_in_repl", "args": {"command": "(do (require 'clojure.test) (clojure.test/run-tests))", "refresh_namespaces": true}},
 
   // Runs the single selected test. You must select the test name.
   { "keys": ["alt+super+t"], "command": "test_selected_var_in_repl", "args": {"refresh_namespaces": false}},
