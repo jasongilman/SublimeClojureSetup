@@ -1,3 +1,6 @@
+*I no longer actively use or maintain this configuration. This still works but I encourage you to try my [Atom editor](https://atom.io) package [Proto REPL](https://github.com/jasongilman/proto-repl).*
+
+
 SublimeClojureSetup
 ===================
 
@@ -169,5 +172,4 @@ The [`ClojureHelpers.py`](ClojureHelpers.py) file provides some helper functions
 ##### Clojure Snippets
 
 Copy the file `clojure_snippets.sublime-snippet` to `~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/clojure_snippets.sublime-snippet`. It contains some useful completions.
-
 
